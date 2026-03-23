@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runzhe Ma (James) | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #DA205A;
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 极光背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(218, 32, 90, 0.03) 0%, transparent 80%);
+            z-index: -1;
+        }
+
+        /* Neon Cursor */
+        #cursor {
+            position: fixed;
+            width: 15px; height: 15px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            filter: blur(2px) drop-shadow(0 0 8px var(--primary));
+            left: 0; top: 0;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.8), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            opacity: 0.6;
+        }
+
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* 填充侧边空白的装饰文字 */
+        .hero-side-text {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-weight: 900;
+            font-size: 15vh;
+            color: rgba(255,255,255,0.1);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            text-transform: uppercase;
+        }
+        .side-left { left: -5%; top: 20%; transform: rotate(-90deg); }
+        .side-right { right: -5%; bottom: 20%; transform: rotate(90deg); }
+
+        #canvas3d {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            transition: opacity 0.3s ease;
+        }
+
+        .hero-content { z-index: 1; pointer-events: none; }
+
+        .hero-content h1 {
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff 30%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typewriter {
+            font-family: var(--font-mono);
+            color: var(--primary);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            margin-bottom: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        .btn-explore {
+            pointer-events: all;
+            padding: 16px 45px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn-explore:hover {
+            background: var(--primary);
+            box-shadow: 0 0 30px rgba(218, 32, 90, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* 通用布局 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 60px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        /* About & Timeline */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+        }
+
+        .profile-sticky { position: sticky; top: 120px; height: fit-content; }
+
+        .avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 40px;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+/* 共有图片定位样式 */
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.4s ease; /* 控制切换的平滑度，0.4s 比较自然 */
+}
+
+/* 悬停照片默认隐藏 */
+.photo-hover {
+    opacity: 0;
+    z-index: 2;
+}
+
+/* 默认照片在底层 */
+.photo-default {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* 鼠标悬停时的逻辑 */
+.avatar:hover .photo-hover {
+    opacity: 1; /* 悬停时显示图二 */
+}
+
+.avatar:hover .photo-default {
+    opacity: 0.7; /* 可选：稍微降低图一透明度，让过渡更深邃 */
+}
+
+        .tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            margin: 4px;
+            transition: 0.3s;
+        }
+        .tag:hover { border-color: var(--primary); color: var(--primary); }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 35px;
+            border-left: 1px solid var(--border);
+        }
+        .timeline-item::after {
+            content: ''; position: absolute; left: -5px; top: 5px;
+            width: 9px; height: 9px; background: var(--primary); border-radius: 50%;
+        }
+
+        /* Work Grid */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+.project-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    padding: 2px; /* 边框的厚度 */
+    overflow: hidden;
+    cursor: pointer;
+    /* 初始投影：向右下偏移 */
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
+    border: none; /* 移除旧边框 */
+    height: 400px; /* 增加高度以容纳图片 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;                /* 确保内部文字布局正常 */
+    flex-direction: column;
+}
+
+       .project-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
+}
+
+.project-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;      /* 或 contain */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 24px;
+    z-index: 0;
+}
+        .project-info {
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    border-radius: 22px; /* 比外层小一点 */
+}
+
+        .project-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 30px 30px 70px rgba(0, 0, 0, 0.7), 0 0 20px rgba(218, 32, 90, 0.1);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+        #work {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 模拟左上角打下来的粉色柔光 */
+#work::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 900px;
+    height: 900px;
+
+    background: radial-gradient(
+        circle,
+        rgba(218, 32, 90, 0.18) 0%,
+        rgba(218, 32, 90, 0.08) 35%,
+        transparent 70%
+    );
+
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+}
+/* 增强 Feature 卡片的投影效果 */
+#work .project-card {
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.5); /* 右下方阴影 */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
+}
+
+#work .project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 30px 30px 80px rgba(218, 32, 90, 0.2); /* 悬停时阴影带一点粉色气晕 */
+}
+
+#university {
+    perspective: 1500px;
+    overflow: hidden; /* 裁剪超出区域 */
+    padding: 150px 0; /* 增加上下内边距，适应更高的卡片 */
+}
+
+/* 2. University Projects 样式 */
+.uni-carousel-shell {
+    position: relative;
+}
+
+.uni-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 600px; /* 给旋转留出更多高度空间 */
+    transform-style: preserve-3d;
+    cursor: grab;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* 更丝滑的过渡 */
+}
+
+.uni-grid:active { cursor: grabbing; }
+
+/* 2. 升级卡片为 3D 层叠 */
+.uni-card {
+    position: absolute; /* 必须绝对定位才能重叠 */
+    width: 280px; /* 变窄 */
+    height: 380px; /* 变高 */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 尝试垂直居中对齐内容，在长方形卡片中看起来更好 */
+    backface-visibility: hidden; /* 隐藏背面 */
+    user-select: none;
+    pointer-events: auto; /* 确保点击弹窗依然有效 */
+}
+.uni-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    background: rgba(218, 32, 90, 0.03);
+}
+
+.usyd-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 30px rgba(218, 32, 90, 0.2);
+    z-index: 1; /* 确保位于卡片后面 */
+    opacity: 0.8;
+    pointer-events: none; /* 不影响拖拽交互 */
+}
+
+.uni-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.3s ease;
+}
+
+.uni-nav-arrow:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(218, 32, 90, 0.08);
+}
+
+.uni-nav-arrow.left { left: 128px; }
+.uni-nav-arrow.right { right: 128px; }
+
+@media (max-width: 768px) {
+    .uni-grid { grid-template-columns: 1fr; }
+    .uni-nav-arrow { width: 40px; height: 40px; }
+    .uni-nav-arrow.left { left: 16px; }
+    .uni-nav-arrow.right { right: 16px; }
+}
+
+        /* Modal / detail view */
+        #project-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(5,5,5,0.98);
+            z-index: 10000;
+            display: none;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #project-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        #resume-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(5,5,5,0.98);
+            z-index: 10000;
+            display: none;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #resume-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 30px; right: 40px;
+            z-index: 10001;
+            background: white; border: none;
+            color: black;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .detail-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 28px;
+            align-items: end;
+            margin-bottom: 40px;
+            max-width: 820px;
+        }
+
+        .detail-kicker {
+            font-family: var(--font-mono);
+            color: var(--primary);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .detail-summary {
+            max-width: 720px;
+            color: #cfcfcf;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .detail-visual {
+            width: 100%;
+            border-radius: 28px;
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            overflow: hidden;
+            padding: 18px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+        }
+
+        .detail-visual img,
+        .mockup-frame img,
+        .gallery-tile img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+        }
+
+        .detail-section-title {
+            margin-bottom: 18px;
+            color: var(--primary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+        }
+
+        .detail-body {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .mockup-frame,
+        .gallery-tile,
+        .placeholder-tile {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 16px;
+            backdrop-filter: blur(15px);
+        }
+
+        .mockup-frame.tall { grid-column: span 4; }
+        .mockup-frame.wide { grid-column: span 8; }
+        .mockup-frame.full { grid-column: 1 / -1; }
+        .mockup-frame.coomo-top { grid-column: 1 / span 4; grid-row: 1; }
+        .mockup-frame.coomo-bottom { grid-column: 1 / span 4; grid-row: 2; }
+        .mockup-frame.coomo-side { grid-column: 5 / span 8; grid-row: 1 / span 2; align-self: stretch; display: flex; align-items: center; }
+        .gallery-grid.sonair-showcase {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 18px;
+        }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-main,
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-main {
+            grid-column: 1 / span 5;
+            grid-row: 1 / span 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+        }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-main img,
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-main img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+        }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini,
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini img,
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini img {
+            width: auto;
+            max-width: 100%;
+            max-height: 210px;
+            height: auto;
+        }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(2),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(2) { grid-column: 6 / span 2; }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(3),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(3) { grid-column: 8 / span 2; }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(4),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(4) { grid-column: 10 / span 2; }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(5),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(5) { grid-column: 6 / span 2; }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(6),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(6) { grid-column: 8 / span 2; }
+        .gallery-grid.sonair-showcase .gallery-tile.sonair-mini:nth-child(7),
+        .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini:nth-child(7) { grid-column: 10 / span 2; }
+
+        .gallery-grid.skydreamer-vr {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            align-items: start;
+            gap: 18px;
+        }
+        .gallery-grid.skydreamer-vr .gallery-tile.mobile,
+        .gallery-grid.skydreamer-vr .placeholder-tile.mobile {
+            grid-column: span 4;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 14px;
+            min-height: 0;
+            background: rgba(255,255,255,0.03);
+        }
+        .gallery-grid.skydreamer-vr .gallery-tile.mobile img,
+        .gallery-grid.skydreamer-vr .placeholder-tile.mobile img {
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 260px;
+            object-fit: contain;
+            border-radius: 18px;
+        }
+
+        .gallery-group {
+            margin-top: 14px;
+        }
+
+        .gallery-group-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 14px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .gallery-grid.mobile-portfolio {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            align-items: start;
+            gap: 22px;
+        }
+
+        .gallery-grid.mobile-portfolio .gallery-tile,
+        .gallery-grid.mobile-portfolio .placeholder-tile,
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile {
+            padding: 14px;
+            border-radius: 28px;
+        }
+
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile,
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 540px;
+        }
+
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile img,
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile img {
+            width: auto;
+            max-width: 100%;
+            max-height: 510px;
+        }
+
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(1),
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(1) { grid-column: 1 / span 3; }
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(2),
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(2) { grid-column: 4 / span 3; }
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(3),
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(3) { grid-column: 7 / span 3; }
+        .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(4),
+        .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(4) { grid-column: 10 / span 3; }
+
+        .gallery-grid.coomo-mobile-portfolio {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            align-items: start;
+            gap: 22px;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 540px;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile img,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile img {
+            width: auto;
+            max-width: 100%;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.coomo-home,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.coomo-home {
+            min-height: auto;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.coomo-uniform img,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.coomo-uniform img {
+            max-height: 510px;
+            width: auto;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.coomo-home img,
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.coomo-home img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+        }
+
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(1),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(1) { grid-column: 1 / span 4; }
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(2),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(2) { grid-column: 5 / span 4; }
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(3),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(3) { grid-column: 9 / span 4; }
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(4),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(4) { grid-column: 2 / span 3; }
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(5),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(5) { grid-column: 5 / span 4; }
+        .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(6),
+        .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(6) { grid-column: 9 / span 3; }
+
+        .gallery-tile.mobile, .placeholder-tile.mobile { grid-column: span 4; }
+        .gallery-tile.web, .placeholder-tile.web { grid-column: span 6; }
+        .gallery-tile.poster, .placeholder-tile.poster { grid-column: span 6; }
+        .gallery-tile.full, .placeholder-tile.full { grid-column: 1 / -1; }
+
+        .placeholder-tile {
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgba(255,255,255,0.55);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+        }
+
+        .next-project-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            text-decoration: none;
+            margin-top: 12px;
+            padding: 18px 22px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            transition: 0.3s ease;
+        }
+        .next-project-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+        }
+        .next-project-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+        }
+        .next-project-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #fff;
+        }
+
+        .uni-socials {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .uni-social-link {
+            width: 52px;
+            height: 52px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+            overflow: hidden;
+        }
+        .uni-social-link:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            background: rgba(218, 32, 90, 0.08);
+        }
+        .uni-social-link img {
+            width: 54%;
+            height: 54%;
+            object-fit: contain;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.92;
+        }
+
+        .nav-logo {
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: var(--primary); /* 悬停时变为粉色，提示可点击 */
+}
+
+        .resume-trigger {
+            margin-top: 18px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid var(--primary);
+            background: rgba(218, 32, 90, 0.14);
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+            cursor: pointer;
+            min-width: 140px;
+            box-shadow: 0 10px 24px rgba(218, 32, 90, 0.18);
+            position: relative;
+            z-index: 2;
+        }
+        .resume-trigger:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(218, 32, 90, 0.08);
+            transform: translateY(-2px);
+        }
+        .resume-sheet {
+            width: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            padding: 34px;
+        }
+        .resume-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            padding-bottom: 24px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border);
+        }
+        .resume-name {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 8px;
+        }
+        .resume-role {
+            font-family: var(--font-mono);
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .resume-contact {
+            display: grid;
+            gap: 8px;
+            text-align: right;
+            color: rgba(255,255,255,0.78);
+            font-size: 0.95rem;
+        }
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+        }
+        .resume-section {
+            margin-bottom: 26px;
+        }
+        .resume-section:last-child { margin-bottom: 0; }
+        .resume-section h3 {
+            margin-bottom: 14px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+        .resume-section p,
+        .resume-section li {
+            color: rgba(255,255,255,0.82);
+            line-height: 1.7;
+            font-size: 0.96rem;
+        }
+        .resume-entry {
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .resume-entry:first-child { border-top: 0; padding-top: 0; }
+        .resume-entry-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .resume-entry-meta {
+            color: rgba(255,255,255,0.58);
+            font-size: 0.86rem;
+            margin-bottom: 10px;
+        }
+        .resume-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .resume-tags .tag { margin: 0; }
+        .resume-bullets {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+        }
+
+        /* 响应式断点 */
+        @media (max-width: 1024px) {
+            .about-grid { gap: 40px; }
+            .work-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px 30px; }
+            .detail-hero { grid-template-columns: 1fr; }
+            .resume-grid { grid-template-columns: 1fr; }
+            .resume-topbar { flex-direction: column; align-items: flex-start; }
+            .resume-contact { text-align: left; }
+            .mockup-frame.tall,
+            .mockup-frame.wide,
+            .gallery-tile.mobile,
+            .gallery-tile.web,
+            .gallery-tile.poster,
+            .placeholder-tile.mobile,
+            .placeholder-tile.web,
+            .placeholder-tile.poster { grid-column: span 6; }
+
+            .gallery-grid.mobile-portfolio,
+            .gallery-grid.coomo-mobile-portfolio,
+            .gallery-grid.sonair-showcase,
+            .gallery-grid.skydreamer-vr { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(1),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(2),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(3),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(4),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(1),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(2),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(3),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(1),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(2),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(3),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(5),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(6),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(1),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(2),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(3),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(5),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(6),
+            .gallery-grid.sonair-showcase .gallery-tile.sonair-main,
+            .gallery-grid.sonair-showcase .placeholder-tile.sonair-main,
+            .gallery-grid.sonair-showcase .gallery-tile.sonair-mini,
+            .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini {
+                grid-column: span 6;
+                grid-row: auto;
+                transform: none;
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .profile-sticky { position: relative; top: 0; }
+            .section-title { margin-bottom: 40px; }
+            .hero-side-text { display: none; }
+            .nav-links { display: none; }
+            #cursor { display: none; }
+            .container { padding: 80px 20px; }
+            .project-card { height: 350px; }
+            .modal-close { top: 18px; right: 20px; }
+            .resume-sheet { padding: 22px; }
+            .mockup-frame.tall,
+            .mockup-frame.wide,
+            .gallery-tile.mobile,
+            .gallery-tile.web,
+            .gallery-tile.poster,
+            .gallery-tile.full,
+            .placeholder-tile.mobile,
+            .placeholder-tile.web,
+            .placeholder-tile.poster,
+            .placeholder-tile.full { grid-column: 1 / -1; }
+
+            .gallery-grid.mobile-portfolio,
+            .gallery-grid.coomo-mobile-portfolio,
+            .gallery-grid.sonair-showcase,
+            .gallery-grid.skydreamer-vr { grid-template-columns: 1fr; }
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(1),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(2),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(3),
+            .gallery-grid.mobile-portfolio .gallery-tile.mobile:nth-child(4),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(1),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(2),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(3),
+            .gallery-grid.mobile-portfolio .placeholder-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(1),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(2),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(3),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(5),
+            .gallery-grid.coomo-mobile-portfolio .gallery-tile.mobile:nth-child(6),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(1),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(2),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(3),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(4),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(5),
+            .gallery-grid.coomo-mobile-portfolio .placeholder-tile.mobile:nth-child(6),
+            .gallery-grid.sonair-showcase .gallery-tile.sonair-main,
+            .gallery-grid.sonair-showcase .placeholder-tile.sonair-main,
+            .gallery-grid.sonair-showcase .gallery-tile.sonair-mini,
+            .gallery-grid.sonair-showcase .placeholder-tile.sonair-mini {
+                grid-column: 1 / -1;
+                grid-row: auto;
+                transform: none;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav>
+        <div class="nav-logo" style="cursor: pointer;">RUNZHE MA</div>
+        <div class="nav-links">
+            <a href="#about">ABOUT</a>
+            <a href="#work">WORK</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-side-text side-left">Interaction</div>
+        <div class="hero-side-text side-right">Experience</div>
+        <canvas id="canvas3d"></canvas>
+        <div class="hero-content">
+            <h1>RUNZHE MA</h1>
+            <div class="typewriter" id="typewriter"></div>
+            <a href="#about" class="btn-explore">Explore</a>
+        </div>
+    </section>
+
+    <div id="project-modal">
+    <button class="modal-close" onclick="closeModal()">CLOSE</button>
+    <div class="modal-body container">
+        <div class="detail-hero">
+            <div>
+                <p id="m-kicker" class="detail-kicker">PROJECT DETAIL</p>
+                <h1 id="m-title" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 10px;">Project Title</h1>
+                <p id="m-tag" style="color: var(--primary); font-family: var(--font-mono); margin-bottom: 22px; letter-spacing: 2px;">TAGS / CATEGORY</p>
+                <p id="m-summary" class="detail-summary"></p>
+            </div>
+        </div>
+
+        <div class="about-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
+            <div class="glass-card" style="padding: 20px;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">TYPE</p>
+                <p id="m-time" style="font-weight: bold;">--</p>
+            </div>
+            <div class="glass-card" style="padding: 20px;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">MY ROLE</p>
+                <p id="m-role" style="font-weight: bold;">--</p>
+            </div>
+            <div class="glass-card" style="padding: 20px;">
+                <p style="font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">LINKS</p>
+                <div id="m-links" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="glass-card detail-section">
+            <h3 class="detail-section-title">Project Info</h3>
+            <div id="m-content" class="detail-body"></div>
+        </div>
+
+        <div id="m-mockups" class="detail-section"></div>
+        <div id="m-gallery" class="detail-section"></div>
+    </div>
+</div>
+
+    <div id="resume-modal">
+    <button class="modal-close" onclick="closeResumeModal()">CLOSE</button>
+    <div class="modal-body container">
+        <div class="detail-hero">
+            <div>
+                <p class="detail-kicker">Resume</p>
+                <h1 class="resume-name">Runzhe Ma</h1>
+                <p class="resume-role">Interaction Designer / UX Designer</p>
+            </div>
+        </div>
+        <div class="resume-sheet">
+            <div class="resume-topbar">
+                <div>
+                    <div class="resume-entry-title">Professional Statement</div>
+                    <p>I am an interaction designer with a multidisciplinary background spanning UX design, coding, AI-assisted workflows, and digital product thinking. I enjoy turning complex systems into clear user experiences and combining design sensitivity with practical execution.</p>
+                </div>
+                <div class="resume-contact">
+                    <div>Sydney, Australia</div>
+                    <div>USYD Graduate</div>
+                    <div>Interaction Design / Design Computing</div>
+                </div>
+            </div>
+            <div class="resume-grid">
+                <div>
+                    <div class="resume-section">
+                        <h3>Education</h3>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">Master of Interaction Design — The University of Sydney</div>
+                            <div class="resume-entry-meta">Sydney, Australia</div>
+                            <p>Focused on interaction systems, service thinking, and human-centered digital experiences across academic and project-based practice.</p>
+                        </div>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">Bachelor of Design Computing — The University of Sydney</div>
+                            <div class="resume-entry-meta">Sydney, Australia</div>
+                            <p>Built a foundation in UX, creative technology, digital making, and multidisciplinary design methods.</p>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <h3>Selected Experience</h3>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">AI-assisted Design and Workflow Practice</div>
+                            <div class="resume-entry-meta">Research, prototyping, content systems, coding support</div>
+                            <ul class="resume-bullets">
+                                <li>Use AI tools to support ideation, workflow structuring, summarisation, design iteration, and technical troubleshooting.</li>
+                                <li>Combine design judgment with coding, prompting, and system thinking to improve both efficiency and final quality.</li>
+                                <li>Translate abstract concepts into clearer user-facing experiences across portfolio, research, and interactive projects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <h3>Selected Projects</h3>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">Songdio</div>
+                            <p>Implementation-focused product and portfolio work spanning web, mobile, and visual presentation of multimodal AI music interaction.</p>
+                        </div>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">Coomo Wellness</div>
+                            <p>Companion-style sound environment concept exploring emotional healing, gentle interaction, and mobile-first experience design.</p>
+                        </div>
+                        <div class="resume-entry">
+                            <div class="resume-entry-title">University Projects</div>
+                            <p>PeriodGuard, Sonair Assistant, and SKYDREAMER — projects spanning health tech, AI companions, VR preparation systems, and service-oriented interaction design.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="resume-section">
+                        <h3>Capabilities</h3>
+                        <div class="resume-tags">
+                            <span class="tag">Interaction Design</span>
+                            <span class="tag">UX Strategy</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">Creative Coding</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Swift</span>
+                            <span class="tag">AI-assisted Workflow</span>
+                            <span class="tag">Information Design</span>
+                            <span class="tag">Visual Communication</span>
+                            <span class="tag">Adobe Creative Suite</span>
+                            <span class="tag">Unity</span>
+                            <span class="tag">Blender</span>
+                            <span class="tag">Fusion 360</span>
+                        </div>
+                    </div>
+                    <div class="resume-section">
+                        <h3>What I Bring</h3>
+                        <ul class="resume-bullets">
+                            <li>Strong ability to move between concept development, interface design, and implementation detail.</li>
+                            <li>Comfort working with both human-centered design questions and technical workflows.</li>
+                            <li>Experience using AI not just for speed, but as a structured design and research support tool.</li>
+                            <li>Attention to clarity, interaction quality, and how systems are perceived by real users.</li>
+                        </ul>
+                    </div>
+                    <div class="resume-section">
+                        <h3>Resume File</h3>
+                        <p>If needed, you can still open the original document file directly.</p>
+                        <p><a href="Runzhe%20MA-Resume%20final.docx" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">Open original resume document</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container" id="about">
+        <h2 class="section-title">ABOUT <span style="color: var(--primary);">ME</span></h2>
+        <div class="about-grid">
+            <aside class="profile-sticky">
+<div class="avatar">
+    <img src="JamesOrigin.image" class="photo-default" alt="James Origin"> 
+    <img src="JamesHover.image" class="photo-hover" alt="James Hover">
+</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Runzhe Ma (James)</h3>
+                <p style="opacity: 0.6; margin-bottom: 14px; font-family: var(--font-mono);">Master of Interaction Design @ USYD<br>Bachelor of Design Computing @ USYD</p>
+                <div style="display: flex; align-items: center; justify-content: flex-start;">
+                    <button class="resume-trigger" onclick="openResumeModal()">Resume</button>
+                </div>
+                <div class="skills-box">
+                    <span class="tag">Figma</span> <span class="tag">JavaScript</span>
+                    <span class="tag">Adobe Creative Suite</span>
+                    <span class="tag">Canva</span>
+                    <span class="tag">AIGCt</span>
+                    <span class="tag">Html + Css</span>
+                    <span class="tag">Swifty</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Python</span> 
+                    <span class="tag">Unity</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">Blender</span> 
+                    <span class="tag">Fusion 360</span>
+                </div>
+            </aside>
+            
+            <main>
+<p style="font-size: 1.1rem; line-height: 1.8; color: #ccc; margin-bottom: 40px; max-width: 800px;">
+    <strong style="color: #fff; font-weight: 700;">Interaction Design and Electric Arts Master’s candidate at USYD</strong>, 
+    specializing in intelligent, user-centered products. I bridge 
+    <span style="color: var(--primary); font-weight: 700;">UI/UX, AI product management, and XR development</span> 
+    to turn complex tech into seamless experiences. Having led end-to-end lifecycles for AI music and health platforms, I thrive on emerging technologies to build solutions that align human needs with business goals. 
+</p>
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); font-size: 1.2rem;">Hangzhou Xin Ying Tech | AI Product Intern</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">DEC 2025 - Mar 2026</p>
+                    <p style="margin-top: 15px; color: #ccc;">Led the end-to-end UX design and front-end development of AI music and music therapy products, conducting market research, defining user needs, and delivering responsive web interfaces for both commercial and government projects.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); font-size: 1.2rem;">CRCC Bridge Engineering | Project Assistant</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">OCT 2025 - DEC 2025</p>
+                    <p style="margin-top: 15px; color: #ccc;">Managed marketing data analysis and reporting, coordinated weekly business activities, and supported the department head in preparing mid-year performance reports.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4 style="color: var(--primary); font-size: 1.2rem;">Event Host & Volunteer| ADP Center</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.5;">Feb 2023 - Nov 2023</p>
+                    <p style="margin-top: 15px; color: #ccc;">Hosted and facilitated student events and orientation programs, supporting over 100 first-year students in their transition to university life.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="container" id="work">
+    
+    <h2 class="section-title">FEATURED <span style="color: var(--primary);">WORK</span></h2>
+    <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">Implementation Projects</h3>
+<div class="work-grid"> 
+    <div class="project-card" onclick="openModal('songdio')">
+    <div class="project-bg" style="background-image: url('SongdioCover.png');"></div>
+    <div class="project-info">
+        <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & MUSIC</span>
+        <h3 style="margin-top: 15px; font-size: 1.8rem;">Songdio</h3>
+        <p style="opacity: 0.8; font-size: 0.9rem;">Redesigning a dynamic, bold interface for multimodal music creation</p>
+    </div>
+</div>
+
+<div class="project-card" onclick="openModal('coomo')">
+    <div class="project-bg" style="background-image: url('CoomoCover.png');"></div>
+    <div class="project-info">
+        <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & Voice</span>
+        <h3 style="margin-top: 15px; font-size: 1.8rem;">Coomo</h3>
+        <p style="opacity: 0.8; font-size: 0.9rem;">Companion-style interactive software that emphasizes emotional healing</p>
+    </div>
+</div>
+</div>
+
+<div class="container" id="university">
+    <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">University Projects</h3>
+    <div class="uni-carousel-shell">
+        <button class="uni-nav-arrow left" onclick="rotateUniCarousel(-1)" aria-label="Previous university project">&#8592;</button>
+        <button class="uni-nav-arrow right" onclick="rotateUniCarousel(1)" aria-label="Next university project">&#8594;</button>
+        <div class="uni-grid">
+            <img src="Logo.png.png" alt="USYD Logo" class="usyd-logo">
+            <div class="uni-card" onclick="openModal('perioguard')" style="cursor: pointer;">
+                <span class="tag" style="width: fit-content;">Health Tech</span>
+                <h4 style="margin-top: 10px; font-size: 1.2rem;">PeriodGuard</h4>
+                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart period-care support system with product and spatial planning.</p>
+            </div>
+            
+            <div class="uni-card" onclick="openModal('sonair')" style="cursor: pointer;">
+                <span class="tag" style="width: fit-content;">AI Assistant</span>
+                <h4 style="margin-top: 10px; font-size: 1.2rem;">Sonair Assistant</h4>
+                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Voice-led support experience for assisted daily interaction.</p>
+            </div>
+
+            <div class="uni-card" onclick="openModal('skydreamer')" style="cursor: pointer;">
+                <span class="tag" style="width: fit-content;">VR Experience</span>
+                <h4 style="margin-top: 10px; font-size: 1.2rem;">SKYDREAMER</h4>
+                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Immersive family flight preparation through interactive VR simulation.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <div class="container" id="contact">
+        <div class="contact-box glass-card" style="text-align: center; padding: 80px 20px;">
+            <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Let's Collaborate</h2>
+            <p style="font-family: var(--font-mono); color: var(--primary); margin-bottom: 10px;">83 Harbour Street, Sydney, NSW 2000</p>
+            <p style="margin-bottom: 30px; opacity: 0.7;">Phone: 0432130500</p>
+            <div class="uni-socials" aria-label="Social links" style="margin-top: 0; margin-bottom: 30px;">
+                <a class="uni-social-link" href="https://www.linkedin.com/in/%E6%B6%A6%E5%93%B2-%E9%A9%AC-004677278?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="Linkedln.png" alt="LinkedIn"></a>
+                <a class="uni-social-link" href="https://www.instagram.com/luoha4luoha?igsh=MW4yY3h5dHIzcWJwbg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                <a class="uni-social-link" href="mailto:jamesluoha4@outlook.com" aria-label="Email"><img src="email.png" alt="Email"></a>
+            </div>
+            <a href="mailto:james.ma@example.com" class="btn-explore">Send Message</a>
+        </div>
+    </div>
+
+    <footer style="padding: 60px 20px; text-align: center; font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.3; letter-spacing: 2px;">
+        DESIGNED & BUILT BY RUNZHE MA © 2026
+    </footer>
+
+
+
+    <script>
+        /** 1. 算法甜甜圈 (高密度物理版) **/
+        const canvas = document.getElementById('canvas3d');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        let mousePos = { x: -1000, y: -1000 };
+
+        class Particle {
+            constructor(t, p) {
+                this.t = t; this.p = p;
+                this.r = 130; this.R = 260;
+                this.baseX = 0; this.baseY = 0;
+                this.currX = Math.random() * window.innerWidth; 
+                this.currY = Math.random() * window.innerHeight;
+                this.vx = 0; this.vy = 0;
+            }
+            update(rot) {
+                let x = (this.R + this.r * Math.cos(this.t)) * Math.cos(this.p);
+                let y = (this.R + this.r * Math.cos(this.t)) * Math.sin(this.p);
+                let z = this.r * Math.sin(this.t);
+
+                let x1 = x * Math.cos(rot) - z * Math.sin(rot);
+                let z1 = x * Math.sin(rot) + z * Math.cos(rot);
+                
+                const pers = 600 / (600 + z1);
+                this.baseX = x1 * pers + width / 2;
+                this.baseY = y * pers + height / 2;
+                this.zDepth = z1;
+
+                let dx = mousePos.x - this.currX;
+                let dy = mousePos.y - this.currY;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                
+                if (dist < 150) {
+                    let force = (150 - dist) / 150;
+                    this.vx += dx * force * 0.06;
+                    this.vy += dy * force * 0.06;
+                }
+
+                this.vx += (this.baseX - this.currX) * 0.07;
+                this.vy += (this.baseY - this.currY) * 0.07;
+                this.vx *= 0.82; 
+                this.vy *= 0.82;
+                
+                this.currX += this.vx;
+                this.currY += this.vy;
+            }
+            draw() {
+                const alpha = (this.zDepth + 250) / 500;
+                ctx.fillStyle = `rgba(218, 32, 90, ${alpha * 0.8})`;
+                ctx.fillRect(this.currX, this.currY, 1.2, 1.2);
+            }
+        }
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            // 增加采样密度 (从 0.22/0.18 提升至 0.15/0.12)
+            for(let t=0; t<Math.PI*2; t+=0.15) {
+                for(let p=0; p<Math.PI*2; p+=0.12) {
+                    particles.push(new Particle(t, p));
+                }
+            }
+        }
+
+        let r = 0;
+        function render() {
+            ctx.clearRect(0, 0, width, height);
+            r += 0.004;
+            const scrollPercent = window.scrollY / 600;
+            canvas.style.opacity = Math.max(0, 1 - scrollPercent);
+
+            particles.forEach(p => {
+                p.update(r);
+                p.draw();
+            });
+            requestAnimationFrame(render);
+        }
+
+        /** 2. 交互逻辑 **/
+        const cursor = document.getElementById('cursor');
+        let curX = 0, curY = 0, targetX = 0, targetY = 0;
+        
+        window.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+            mousePos.x = e.clientX;
+            mousePos.y = e.clientY;
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+            });
+        });
+
+        function animateCursor() {
+            curX += (targetX - curX) * 0.1;
+            curY += (targetY - curY) * 0.1;
+            cursor.style.transform = `translate(${curX}px, ${curY}px)`;
+            requestAnimationFrame(animateCursor);
+        }
+
+        const roles = ["INTERACTION DESIGNER", "AI PRODUCT MANAGER", "CREATIVE DEVELOPER", "USER EXPERIENCE DESIGNER", "FRONT_END DEVELOPER"];
+        let rIdx = 0, charIdx = 0, del = false;
+        function type() {
+            const current = roles[rIdx];
+            const typeElem = document.getElementById('typewriter');
+            if(typeElem) {
+                typeElem.innerText = del ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
+                if(!del && charIdx > current.length) { setTimeout(()=>del=true, 2500); }
+                else if(del && charIdx < 0) { del=false; rIdx = (rIdx+1)%roles.length; }
+            }
+            setTimeout(type, del ? 40 : 80);
+        }
+
+        const projects = {
+            songdio: {
+        title: "Songdio",
+        kicker: "Implementation Project",
+        tag: "AI / GENERATIVE MUSIC / WEB & MOBILE",
+        time: "Dec 2025 - Mar 2026",
+        role: "Lead UI/UX Designer & Front-end Developer",
+        img: "webpage.png",
+        summary: "A multimodal AI music experience presented through responsive product storytelling across mockups, mobile interfaces, promotional visuals, and a dedicated web showcase.",
+        content: `
+            <p>Songdio is a multimodal AI music platform designed to make music generation feel more expressive, visually bold, and easier to explore across devices. This detail page is framed as an implementation-focused case study, bringing together product mockups, mobile interface screens, promotional visuals, and the web-side experience in one continuous narrative.</p>
+            <p style="margin-top: 18px;">The layout stays intentionally flexible so each asset can preserve its original proportion and shape. Instead of forcing every image into one rigid format, the page adapts to the character of each deliverable, which makes the project feel closer to a real portfolio presentation and launch-ready handoff.</p>
+        `,
+        links: [
+            { label: "Live Site", url: "https://songdio.app/zh" },
+            { label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=2-6033&t=9BM7jsZokye2NkEB-1" }
+        ],
+        mockups: [
+            { src: "mockup-1.png", alt: "Songdio mockup one", className: "full" },
+            { src: "mockup-2.jpg", alt: "Songdio mockup two", className: "tall" },
+            { src: "mockup-3.png", alt: "Songdio mockup three", className: "wide" }
+        ],
+        gallerySections: [
+            {
+                title: "Mobile Screens",
+                layoutClass: "mobile-portfolio",
+                items: [
+                    { src: "mobile-1.png", alt: "Songdio mobile screen one", className: "mobile" },
+                    { src: "mobile-2.png", alt: "Songdio mobile screen two", className: "mobile" },
+                    { src: "mobile-3.png", alt: "Songdio mobile screen three", className: "mobile" },
+                    { src: "mobile-4.png", alt: "Songdio mobile screen four", className: "mobile" }
+                ]
+            },
+            {
+                title: "Promo Visuals",
+                items: [
+                    { src: "poster-1.png", alt: "Songdio promo visual one", className: "poster" },
+                    { src: "poster-2.png", alt: "Songdio promo visual two", className: "poster" }
+                ]
+            },
+            {
+                title: "Web Experience",
+                items: [
+                    { src: "webpage.png", alt: "Songdio webpage showcase", className: "full" }
+                ]
+            }
+        ]
+    },
+    coomo: {
+        title: "Coomo Wellness",
+        kicker: "Implementation Project",
+        tag: "AI / WELLNESS / MOBILE",
+        time: "Jan 2026 - Present",
+        role: "AI Product Designer",
+        img: "Free iPhone 17 Pro.png",
+        summary: "An AI-driven companion-style wellness concept with an emotionally guided interaction tone.",
+        content: `<p>Coomo is an AI-driven sound environment app designed around gentle interaction, emotional companionship, and restorative daily rituals.</p><p style="margin-top: 18px;">This is a companion-style interactive software that emphasizes emotional healing. It focuses on using a mix of various music and audio formats to provide users with a psychologically supportive and therapeutic experience. The product is currently in the testing phase. During the product design process, I also worked as a front-end developer, primarily using the Swift language in Xcode.</p>`,
+        links: [
+            { label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=2-4645&t=9BM7jsZokye2NkEB-1" }
+        ],
+        mockups: [
+            { src: "Free iPhone 17 Pro.png", alt: "Coomo iPhone 17 Pro mockup", className: "coomo-top" },
+            { src: "iPhone 15 Pro (2).png", alt: "Coomo iPhone 15 Pro mockup", className: "coomo-bottom" },
+            { src: "Free iPhone Air.png", alt: "Coomo iPhone Air mockup", className: "coomo-side" }
+        ],
+        gallerySections: [
+            {
+                title: "Mobile Screens",
+                layoutClass: "coomo-mobile-portfolio",
+                items: [
+                    { src: "Home Page (1).png", alt: "Coomo home page", className: "mobile coomo-home" },
+                    { src: "White_Noise Info.png", alt: "Coomo white noise info", className: "mobile coomo-uniform" },
+                    { src: "White_Noise Play Page (1).png", alt: "Coomo white noise play page", className: "mobile coomo-uniform" },
+                    { src: "Agile Play Page.png", alt: "Coomo agile play page", className: "mobile coomo-uniform" },
+                    { src: "Agile Info.png", alt: "Coomo agile info", className: "mobile coomo-uniform" },
+                    { src: "Inner_Word.png", alt: "Coomo inner word page", className: "mobile coomo-uniform" }
+                ]
+            }
+        ]
+    },
+    sonair: {
+        title: "Sonair Assistant",
+        kicker: "University Project",
+        tag: "AI HEALTH / COMPANION / WEARABLE",
+        time: "University Project",
+        role: "Interaction Designer & Product Designer",
+        img: "Sonair Top.png",
+        summary: "A future-oriented AI health companion that combines wearable sensing and emotionally intelligent support for users who care about lung health.",
+        content: `<p>LungGuard Pro is a future-oriented AI health companion designed for young smokers and users who care about lung health, focusing on the neglected daily life behavior of coughing. Through a wearable cough sensing necklace and an emotionally intelligent mobile app, LungGuard enables users to monitor daily coughing patterns and gain real-time insights, while the intelligent AI companion assistant will provide real emotional support to ensure that users receive personalized support to quit smoking and restore lung health.</p>`,
+        links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-3045&t=Ng3uklA5AtyuPTM6-1" }],
+        mockups: [
+            { src: "Sonair Top.png", alt: "Sonair top visual", className: "full" }
+        ],
+        gallerySections: [
+            {
+                title: "Interface Showcase",
+                layoutClass: "sonair-showcase",
+                items: [
+                    { src: "MockUp.png", alt: "Sonair main mockup", className: "sonair-main" },
+                    { src: "Sonair1.png", alt: "Sonair interface one", className: "sonair-mini" },
+                    { src: "Sonair2.png", alt: "Sonair interface two", className: "sonair-mini" },
+                    { src: "Sonair3.png", alt: "Sonair interface three", className: "sonair-mini" },
+                    { src: "Sonair4.png", alt: "Sonair interface four", className: "sonair-mini" },
+                    { src: "Sonair5.png", alt: "Sonair interface five", className: "sonair-mini" },
+                    { src: "Sonair6.png", alt: "Sonair interface six", className: "sonair-mini" }
+                ]
+            }
+        ],
+        nextProject: { id: "perioguard", name: "Period Guard" }
+    },
+    skydreamer: {
+        title: "SKYDREAMER",
+        kicker: "University Project",
+        tag: "VR / FAMILY TRAVEL / EXPERIENCE DESIGN",
+        time: "University Project",
+        role: "Interaction Designer & Experience Designer",
+        img: "SKYTop.png",
+        summary: "A VR-based preparation system that helps families rehearse air travel with children before departure.",
+        content: `<p>SkyDreamer is a VR-based flight preparation system designed for parents traveling with children. It combines flight planning, child setup, and immersive simulation to help families rehearse key stages of the journey before departure, such as the airport and in-flight experience.</p><p style="margin-top: 18px;">The project aims to reduce travel anxiety, improve parents’ sense of control, and help children become more familiar with unfamiliar travel environments. By turning preparation into an interactive VR experience, SkyDreamer explores how immersive technology can support smoother and more family-centered air travel.</p>`,
+        links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-3534&t=Ng3uklA5AtyuPTM6-1" }],
+        mockups: [
+            { src: "SKYTop.png", alt: "SkyDreamer top visual", className: "full" }
+        ],
+        gallerySections: [
+            {
+                title: "VR Screens",
+                layoutClass: "skydreamer-vr",
+                items: [
+                    { src: "VR1.png", alt: "SkyDreamer VR screen one", className: "mobile" },
+                    { src: "VR2.png", alt: "SkyDreamer VR screen two", className: "mobile" },
+                    { src: "VR3.png", alt: "SkyDreamer VR screen three", className: "mobile" },
+                    { src: "VR4.png", alt: "SkyDreamer VR screen four", className: "mobile" },
+                    { src: "VR5.png", alt: "SkyDreamer VR screen five", className: "mobile" },
+                    { src: "VR6.png", alt: "SkyDreamer VR screen six", className: "mobile" }
+                ]
+            }
+        ],
+        nextProject: { id: "sonair", name: "Sonair Assistant" }
+    },
+    perioguard: {
+        title: "PeriodGuard",
+        kicker: "University Project",
+        tag: "HEALTH TECH / PRODUCT / UX",
+        time: "University Project",
+        role: "Interaction Designer & Product Designer",
+        img: "PeriodGuardTop.png",
+        summary: "An integrated oral healthcare solution designed to support early detection, preventive care, and everyday gum-health awareness for students.",
+        content: `<p>PerioGuard is an integrated oral healthcare solution designed to help students detect early signs of periodontal disease and improve preventive care in daily life. The project combines a smart physical prototype with a digital mobile platform, enabling users to monitor oral conditions, receive brushing support, access health reports, and develop greater awareness of gum health.</p><p style="margin-top: 18px;">Informed by qualitative and quantitative user research, the design responds to the need for convenient, affordable, and user-friendly periodontal care tools. By incorporating AI-assisted analysis, data tracking, and health education, PerioGuard aims to promote early intervention and reduce the risk of periodontal disease among young people.</p>`,
+        links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-1022&t=Ng3uklA5AtyuPTM6-1" }],
+        mockups: [
+            { src: "PeriodGuardTop.png", alt: "PeriodGuard top concept visual", className: "full" }
+        ],
+        gallerySections: [
+            {
+                title: "Mobile Screens",
+                layoutClass: "mobile-portfolio",
+                items: [
+                    { src: "PG1.png", alt: "PeriodGuard mobile screen one", className: "mobile" },
+                    { src: "PG2.png", alt: "PeriodGuard mobile screen two", className: "mobile" },
+                    { src: "PG3.png", alt: "PeriodGuard mobile screen three", className: "mobile" },
+                    { src: "PG4.png", alt: "PeriodGuard mobile screen four", className: "mobile" }
+                ]
+            },
+            {
+                title: "Product Floor Plan",
+                items: [
+                    { src: "Product Floor plan.png", alt: "PeriodGuard product floor plan", className: "full" }
+                ]
+            }
+        ],
+        nextProject: { id: "skydreamer", name: "SKYDREAMER" }
+    }
+};
+
+        const navLogo = document.querySelector('.nav-logo');
+
+// 点击 Logo 平滑滚动到顶部
+if (navLogo) {
+    navLogo.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
+
+        function renderMockups(mockups = []) {
+    const target = document.getElementById('m-mockups');
+    if(!target) return;
+    if(!mockups.length) {
+        target.innerHTML = '';
+        return;
+    }
+
+    target.innerHTML = `
+        <h3 class="detail-section-title">Mockup Showcase</h3>
+        <div class="mockup-grid">
+            ${mockups.map(item => `
+                <div class="mockup-frame ${item.className || 'full'}">
+                    <img src="${item.src}" alt="${item.alt || 'Project mockup'}">
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function renderGallerySections(sections = []) {
+    const target = document.getElementById('m-gallery');
+    if(!target) return;
+    if(!sections.length) {
+        target.innerHTML = '';
+        return;
+    }
+
+    target.innerHTML = `
+        <h3 class="detail-section-title">Visual Outputs</h3>
+        ${sections.map(section => `
+            <div class="gallery-group">
+                <div class="gallery-group-title">${section.title}</div>
+                <div class="gallery-grid ${section.layoutClass || ''}">
+                    ${(section.items || []).map(item => item.src
+                        ? `<div class="gallery-tile ${item.className || 'web'}"><img src="${item.src}" alt="${item.alt || section.title}"></div>`
+                        : `<div class="placeholder-tile ${item.className || 'web'}">${item.placeholder || 'Image placeholder'}</div>`
+                    ).join('')}
+                </div>
+            </div>
+        `).join('')}
+        ${sections.nextProject ? `
+            <div class="detail-section" style="margin-top: 12px;">
+                <a class="next-project-link" href="javascript:void(0)" onclick="openModal('${sections.nextProject.id}')">
+                    <span class="next-project-label">Next Project &rarr;</span>
+                    <span class="next-project-name">${sections.nextProject.name}</span>
+                </a>
+            </div>
+        ` : ''}
+    `;
+}
+
+        function openModal(id) {
+    const p = projects[id];
+    if(!p) return;
+
+    document.getElementById('m-kicker').innerText = p.kicker || 'Project Detail';
+    document.getElementById('m-title').innerText = p.title;
+    document.getElementById('m-tag').innerText = p.tag;
+    document.getElementById('m-summary').innerText = p.summary || '';
+    document.getElementById('m-content').innerHTML = p.content;
+    document.getElementById('m-time').innerText = p.time || 'N/A';
+    document.getElementById('m-role').innerText = p.role || 'Designer';
+
+    const linkBox = document.getElementById('m-links');
+    linkBox.innerHTML = '';
+    (p.links || []).forEach(l => {
+        linkBox.innerHTML += `<a href="${l.url}" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: bold; border-bottom: 1px solid var(--primary);">[ ${l.label} ]</a>`;
+    });
+
+    renderMockups(p.mockups || []);
+    const gallerySections = Array.isArray(p.gallerySections) ? [...p.gallerySections] : [];
+    gallerySections.nextProject = p.nextProject;
+    renderGallerySections(gallerySections);
+
+    const modal = document.getElementById('project-modal');
+    modal.style.display = 'block';
+    setTimeout(() => modal.classList.add('active'), 10);
+    document.body.style.overflow = 'hidden';
+}
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+
+        function openResumeModal() {
+            const modal = document.getElementById('resume-modal');
+            if(!modal) return;
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResumeModal() {
+            const modal = document.getElementById('resume-modal');
+            if(!modal) return;
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+
+        window.addEventListener('resize', init);
+        init(); render(); type(); animateCursor();
+
+const uniGrid = document.querySelector('.uni-grid');
+    const uniCards = document.querySelectorAll('.uni-card');
+    const totalCards = uniCards.length;
+    let isDraggingUni = false;
+    let startXUni = 0;
+    let currentRotationY = 0;
+    let lastRotationY = 0;
+
+    // 初始化：将卡片均匀排布在圆周上
+    function init3D() {
+        uniCards.forEach((card, i) => {
+            const theta = (i / totalCards) * 360;
+            // 改进：調整轮盘半径为300px（卡片变窄了），卡片呈螺旋状分布
+            card.style.transform = `rotateY(${theta}deg) translateZ(380px)`; 
+        });
+    }
+
+    function update3DCarousel() {
+        // 旋转整个容器，而不是单独旋转卡片，这样更丝滑
+        uniGrid.style.transform = `rotateY(${currentRotationY}deg)`;
+        
+        // 调整光影效果和层级，使其更亮，更清晰看到后面
+        uniCards.forEach((card, i) => {
+            const theta = (i / totalCards) * 360 + currentRotationY;
+            const normalizedTheta = ((theta % 360) + 360) % 360; // 保持在 0-360
+            
+            const opacity = Math.cos(normalizedTheta * Math.PI / 180);
+            card.style.opacity = Math.max(0.4, (opacity + 1.2) / 2.2); // 调整这里
+            
+            // 防止误触：只有最前面的卡片可以点击
+            card.style.pointerEvents = (normalizedTheta < 45 || normalizedTheta > 315) ? 'auto' : 'none';
+        });
+    }
+
+    // 鼠标/触摸事件 (仅在 uni-grid 区域内监听)
+    uniGrid.addEventListener('mousedown', (e) => {
+        isDraggingUni = true;
+        startXUni = e.clientX;
+        uniGrid.style.transition = 'none'; // 拖拽时取消动画
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDraggingUni) return;
+        const dx = e.clientX - startXUni;
+        // 改进：将旋转系数从 0.2 降至 0.1，减慢旋转速度，更合理不 jump
+        currentRotationY = lastRotationY + dx * 0.1; 
+        requestAnimationFrame(update3DCarousel);
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (!isDraggingUni) return;
+        isDraggingUni = false;
+        lastRotationY = currentRotationY;
+        uniGrid.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        
+        // 改进：松手后自动对齐到最近的一张卡片
+        const snapAngle = 360 / totalCards;
+        currentRotationY = Math.round(currentRotationY / snapAngle) * snapAngle;
+        lastRotationY = currentRotationY;
+        update3DCarousel();
+    });
+
+    function rotateUniCarousel(direction) {
+        const snapAngle = 360 / totalCards;
+        currentRotationY = lastRotationY + direction * snapAngle;
+        lastRotationY = currentRotationY;
+        uniGrid.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        update3DCarousel();
+    }
+
+    // 启动执行
+    init3D();
+    update3DCarousel();
+    </script>
+</body>
+</html>
