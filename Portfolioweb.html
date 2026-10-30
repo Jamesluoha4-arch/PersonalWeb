@@ -1122,10 +1122,13 @@
         <div class="hero-side-text side-right">Experience</div>
         <canvas id="canvas3d"></canvas>
         <div class="hero-content">
+            <p class="hero-eyebrow">DESIGN × TECHNOLOGY × HUMAN EXPERIENCE</p>
             <h1>RUNZHE MA</h1>
             <div class="typewriter" id="typewriter"></div>
-            <a href="#about" class="btn-explore">Explore</a>
+            <p class="hero-intro">Designing thoughtful experiences at the intersection of people and emerging technology.</p>
+            <div class="hero-actions"><a href="#work" class="btn-explore">View selected work <span aria-hidden="true">↗</span></a><a href="#about" class="hero-secondary">About me <span aria-hidden="true">↓</span></a></div>
         </div>
+        <div class="hero-bottom"><span>SYDNEY, AUSTRALIA</span><span>UI/UX · AI PRODUCTS · XR</span><a href="#work" aria-label="Explore selected projects">SCROLL TO EXPLORE ↓</a></div>
     </section>
 
     <div id="project-modal">
@@ -1272,6 +1275,7 @@
 </div>
 
     <div class="container" id="about">
+        <p class="section-eyebrow">01 / THE DESIGNER</p>
         <h2 class="section-title">ABOUT <span style="color: var(--primary);">ME</span></h2>
         <div class="about-grid">
             <aside class="profile-sticky">
@@ -1330,6 +1334,7 @@
 
     <div class="container" id="work">
     
+    <p class="section-eyebrow">02 / SELECTED PROJECTS</p>
     <h2 class="section-title">FEATURED <span style="color: var(--primary);">WORK</span></h2>
     <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">Implementation Projects</h3>
 <div class="work-grid"> 
@@ -1355,23 +1360,23 @@
 <div class="container" id="university">
     <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">University Projects</h3>
     <div class="uni-carousel-shell">
-        <button class="uni-nav-arrow left" onclick="rotateUniCarousel(-1)" aria-label="Previous university project">&#8592;</button>
-        <button class="uni-nav-arrow right" onclick="rotateUniCarousel(1)" aria-label="Next university project">&#8594;</button>
         <div class="uni-grid">
-            <img src="assets/logo-png.webp" alt="USYD Logo" class="usyd-logo">
             <div class="uni-card" onclick="openModal('perioguard')" style="cursor: pointer;">
+                <img class="uni-cover" src="assets/periodguardtop.webp" alt="" loading="lazy" decoding="async">
                 <span class="tag" style="width: fit-content;">Health Tech</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">PeriodGuard</h4>
                 <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart oral-health support system with product and spatial planning.</p>
             </div>
             
             <div class="uni-card" onclick="openModal('sonair')" style="cursor: pointer;">
+                <img class="uni-cover" src="assets/sonair-top.webp" alt="" loading="lazy" decoding="async">
                 <span class="tag" style="width: fit-content;">AI Assistant</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">Sonair Assistant</h4>
                 <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Voice-led support experience for assisted daily interaction.</p>
             </div>
 
             <div class="uni-card" onclick="openModal('skydreamer')" style="cursor: pointer;">
+                <img class="uni-cover" src="assets/vr1.webp" alt="" loading="lazy" decoding="async">
                 <span class="tag" style="width: fit-content;">VR Experience</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">SKYDREAMER</h4>
                 <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Immersive family flight preparation through interactive VR simulation.</p>
@@ -1384,7 +1389,9 @@
     </div>
     <div class="container" id="contact">
         <div class="contact-box glass-card" style="text-align: center; padding: 80px 20px;">
+            <p class="section-eyebrow">03 / GET IN TOUCH</p>
             <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Let's Collaborate</h2>
+            <p class="contact-intro">Have an idea in mind? Let’s make it tangible.</p>
             <p style="font-family: var(--font-mono); color: var(--primary); margin-bottom: 10px;">83 Harbour Street, Sydney, NSW 2000</p>
             <p style="margin-bottom: 30px; opacity: 0.7;">Phone: 0432130500</p>
             <div class="uni-socials" aria-label="Social links" style="margin-top: 0; margin-bottom: 30px;">
@@ -1803,85 +1810,6 @@ function renderGallerySections(sections = []) {
         window.addEventListener('resize', init);
         init(); render(); applyLanguage(); type(); animateCursor();
 
-const uniGrid = document.querySelector('.uni-grid');
-    const uniCards = document.querySelectorAll('.uni-card');
-    const totalCards = uniCards.length;
-    let isDraggingUni = false;
-    let startXUni = 0;
-    let currentRotationY = 0;
-    let lastRotationY = 0;
-
-    // 初始化：将卡片均匀排布在圆周上
-    function init3D() {
-        uniCards.forEach((card, i) => {
-            const theta = (i / totalCards) * 360;
-            // 改进：調整轮盘半径为300px（卡片变窄了），卡片呈螺旋状分布
-            card.style.transform = `rotateY(${theta}deg) translateZ(380px)`; 
-        });
-    }
-
-    function update3DCarousel() {
-        // 旋转整个容器，而不是单独旋转卡片，这样更丝滑
-        uniGrid.style.transform = `rotateY(${currentRotationY}deg)`;
-        
-        // 调整光影效果和层级，使其更亮，更清晰看到后面
-        uniCards.forEach((card, i) => {
-            const theta = (i / totalCards) * 360 + currentRotationY;
-            const normalizedTheta = ((theta % 360) + 360) % 360; // 保持在 0-360
-            
-            const opacity = Math.cos(normalizedTheta * Math.PI / 180);
-            card.style.opacity = Math.max(0.4, (opacity + 1.2) / 2.2); // 调整这里
-            
-            // 防止误触：只有最前面的卡片可以点击
-            const active = normalizedTheta < 45 || normalizedTheta > 315;
-            card.style.pointerEvents = active ? 'auto' : 'none';
-            card.tabIndex = active ? 0 : -1;
-            card.setAttribute('aria-hidden', String(!active));
-        });
-    }
-
-    const carouselShell = document.querySelector('.uni-carousel-shell');
-    let draggedUni = false;
-    carouselShell.addEventListener('pointerdown', e => {
-        if (e.target.closest('button') || e.button !== 0) return;
-        isDraggingUni = true; draggedUni = false; startXUni = e.clientX;
-        uniGrid.style.transition = 'none';
-    });
-    window.addEventListener('pointermove', e => {
-        if (!isDraggingUni) return;
-        const dx = e.clientX - startXUni;
-        if (Math.abs(dx) > 8) draggedUni = true;
-        currentRotationY = lastRotationY + dx * .35;
-        update3DCarousel();
-    });
-    function finishCarouselDrag() {
-        if (!isDraggingUni) return;
-        isDraggingUni = false;
-        const snapAngle = 360 / totalCards;
-        currentRotationY = Math.round(currentRotationY / snapAngle) * snapAngle;
-        lastRotationY = currentRotationY;
-        uniGrid.style.transition = 'transform .6s cubic-bezier(.23, 1, .32, 1)';
-        update3DCarousel();
-    }
-    window.addEventListener('pointerup', finishCarouselDrag);
-    window.addEventListener('pointercancel', finishCarouselDrag);
-    carouselShell.addEventListener('click', e => {
-        if (draggedUni && e.target.closest('.uni-card')) {
-            e.preventDefault(); e.stopPropagation(); draggedUni = false;
-        }
-    }, true);
-
-    function rotateUniCarousel(direction) {
-        const snapAngle = 360 / totalCards;
-        currentRotationY = lastRotationY + direction * snapAngle;
-        lastRotationY = currentRotationY;
-        uniGrid.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-        update3DCarousel();
-    }
-
-    // 启动执行
-    init3D();
-    update3DCarousel();
     </script>
 <script src="interactions.js"></script>
 </body>

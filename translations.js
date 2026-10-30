@@ -1,5 +1,14 @@
 /* Curated translations; product names and software names remain unchanged. */
 const chinese = {
+    'DESIGN × TECHNOLOGY × HUMAN EXPERIENCE': '设计 × 科技 × 人的体验',
+    'Designing thoughtful experiences at the intersection of people and emerging technology.': '连接人与新兴科技，打造细致而有温度的体验。',
+    'View selected work': '查看精选作品', 'About me': '关于我',
+    'SYDNEY, AUSTRALIA': '澳大利亚 · 悉尼', 'UI/UX · AI PRODUCTS · XR': 'UI/UX · AI 产品 · XR',
+    'SCROLL TO EXPLORE ↓': '向下探索 ↓', 'Explore selected projects': '探索精选项目',
+    '01 / THE DESIGNER': '01 / 关于设计师', '02 / SELECTED PROJECTS': '02 / 精选项目',
+    '03 / GET IN TOUCH': '03 / 保持联系',
+    'Have an idea in mind? Let’s make it tangible.': '有一个想法？让我们一起把它变成现实。',
+
     'ABOUT': '关于', 'ME': '我', 'WORK': '作品', 'CONTACT': '联系',
     'FEATURED': '精选', 'Interaction': '交互', 'Experience': '体验', 'Explore': '探索作品',
     'CLOSE': '关闭', 'PROJECT DETAIL': '项目详情', 'Project Detail': '项目详情',
