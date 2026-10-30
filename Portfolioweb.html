@@ -1102,13 +1102,14 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
 
     <div id="cursor"></div>
 
     <nav>
-        <div class="nav-logo" style="cursor: pointer;">RUNZHE MA</div>
+        <a class="nav-logo" href="#">RUNZHE MA</a>
         <div class="nav-links">
             <a href="#about">ABOUT</a>
             <a href="#work">WORK</a>
@@ -1262,7 +1263,7 @@
                     <div class="resume-section">
                         <h3>Resume File</h3>
                         <p>If needed, you can still open the original document file directly.</p>
-                        <p><a href="Runzhe%20MA-Resume%20final.docx" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">Open original resume document</a></p>
+                        <p><a href="Runzhe%20MA-Resume%20final.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; border-bottom: 1px solid var(--primary);">Open original resume document</a></p>
                     </div>
                 </div>
             </div>
@@ -1275,8 +1276,8 @@
         <div class="about-grid">
             <aside class="profile-sticky">
 <div class="avatar">
-    <img src="JamesOrigin.image" class="photo-default" alt="James Origin"> 
-    <img src="JamesHover.image" class="photo-hover" alt="James Hover">
+    <img src="assets/jamesorigin.webp" class="photo-default" alt="James Origin">
+    <img src="assets/jameshover.webp" class="photo-hover" alt="James Hover">
 </div>
                 <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Runzhe Ma (James)</h3>
                 <p style="opacity: 0.6; margin-bottom: 14px; font-family: var(--font-mono);">Master of Interaction Design @ USYD<br>Bachelor of Design Computing @ USYD</p>
@@ -1287,9 +1288,9 @@
                     <span class="tag">Figma</span> <span class="tag">JavaScript</span>
                     <span class="tag">Adobe Creative Suite</span>
                     <span class="tag">Canva</span>
-                    <span class="tag">AIGCt</span>
+                    <span class="tag">AIGC</span>
                     <span class="tag">Html + Css</span>
-                    <span class="tag">Swifty</span>
+                    <span class="tag">Swift</span>
                     <span class="tag">JavaScript</span>
                     <span class="tag">Python</span> 
                     <span class="tag">Unity</span>
@@ -1333,7 +1334,7 @@
     <h3 style="font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 4px; opacity: 0.5; margin-bottom: 30px; text-transform: uppercase;">Implementation Projects</h3>
 <div class="work-grid"> 
     <div class="project-card" onclick="openModal('songdio')">
-    <div class="project-bg" style="background-image: url('SongdioCover.png');"></div>
+    <div class="project-bg" style="background-image: url('assets/songdiocover.webp');"></div>
     <div class="project-info">
         <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & MUSIC</span>
         <h3 style="margin-top: 15px; font-size: 1.8rem;">Songdio</h3>
@@ -1342,7 +1343,7 @@
 </div>
 
 <div class="project-card" onclick="openModal('coomo')">
-    <div class="project-bg" style="background-image: url('CoomoCover.png');"></div>
+    <div class="project-bg" style="background-image: url('assets/coomocover.webp');"></div>
     <div class="project-info">
         <span class="tag" style="background: var(--primary); border:none; width: fit-content;">AI & Voice</span>
         <h3 style="margin-top: 15px; font-size: 1.8rem;">Coomo</h3>
@@ -1357,11 +1358,11 @@
         <button class="uni-nav-arrow left" onclick="rotateUniCarousel(-1)" aria-label="Previous university project">&#8592;</button>
         <button class="uni-nav-arrow right" onclick="rotateUniCarousel(1)" aria-label="Next university project">&#8594;</button>
         <div class="uni-grid">
-            <img src="Logo.png.png" alt="USYD Logo" class="usyd-logo">
+            <img src="assets/logo-png.webp" alt="USYD Logo" class="usyd-logo">
             <div class="uni-card" onclick="openModal('perioguard')" style="cursor: pointer;">
                 <span class="tag" style="width: fit-content;">Health Tech</span>
                 <h4 style="margin-top: 10px; font-size: 1.2rem;">PeriodGuard</h4>
-                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart period-care support system with product and spatial planning.</p>
+                <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 5px;">Smart oral-health support system with product and spatial planning.</p>
             </div>
             
             <div class="uni-card" onclick="openModal('sonair')" style="cursor: pointer;">
@@ -1380,17 +1381,18 @@
 </div>
 
     
+    </div>
     <div class="container" id="contact">
         <div class="contact-box glass-card" style="text-align: center; padding: 80px 20px;">
             <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px;">Let's Collaborate</h2>
             <p style="font-family: var(--font-mono); color: var(--primary); margin-bottom: 10px;">83 Harbour Street, Sydney, NSW 2000</p>
             <p style="margin-bottom: 30px; opacity: 0.7;">Phone: 0432130500</p>
             <div class="uni-socials" aria-label="Social links" style="margin-top: 0; margin-bottom: 30px;">
-                <a class="uni-social-link" href="https://www.linkedin.com/in/%E6%B6%A6%E5%93%B2-%E9%A9%AC-004677278?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="Linkedln.png" alt="LinkedIn"></a>
-                <a class="uni-social-link" href="https://www.instagram.com/luoha4luoha?igsh=MW4yY3h5dHIzcWJwbg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
-                <a class="uni-social-link" href="mailto:jamesluoha4@outlook.com" aria-label="Email"><img src="email.png" alt="Email"></a>
+                <a class="uni-social-link" href="https://www.linkedin.com/in/%E6%B6%A6%E5%93%B2-%E9%A9%AC-004677278?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/linkedln.webp" alt="LinkedIn"></a>
+                <a class="uni-social-link" href="https://www.instagram.com/luoha4luoha?igsh=MW4yY3h5dHIzcWJwbg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/instagram.webp" alt="Instagram"></a>
+                <a class="uni-social-link" href="mailto:jamesluoha4@outlook.com" aria-label="Email"><img src="assets/email.webp" alt="Email"></a>
             </div>
-            <a href="mailto:james.ma@example.com" class="btn-explore">Send Message</a>
+            <a href="mailto:jamesluoha4@outlook.com" class="btn-explore">Send Message</a>
         </div>
     </div>
 
@@ -1400,6 +1402,11 @@
 
 
 
+    <button id="language-toggle" class="language-toggle" type="button" aria-label="切换为中文" lang="zh-CN">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12M9 3v2M5 5c1 5 4 8 8 10M13 5c-1 5-4 8-9 11M14 21l4-10 4 10M15.5 17h5"/></svg>
+        <span>中文</span>
+    </button>
+    <script src="translations.js"></script>
     <script>
         /** 1. 算法甜甜圈 (高密度物理版) **/
         const canvas = document.getElementById('canvas3d');
@@ -1504,17 +1511,25 @@
             requestAnimationFrame(animateCursor);
         }
 
-        const roles = ["INTERACTION DESIGNER", "AI PRODUCT MANAGER", "CREATIVE DEVELOPER", "USER EXPERIENCE DESIGNER", "FRONT_END DEVELOPER"];
-        let rIdx = 0, charIdx = 0, del = false;
+        const roles = ["INTERACTION DESIGNER", "AI PRODUCT MANAGER", "CREATIVE DEVELOPER", "USER EXPERIENCE DESIGNER", "FRONT-END DEVELOPER"];
+        const rolesZh = ["交互设计师", "AI 产品经理", "创意开发者", "用户体验设计师", "前端开发者"];
+        let rIdx = 0, charIdx = 0, del = false, typeTimer;
         function type() {
-            const current = roles[rIdx];
+            const current = (language === 'zh-CN' ? rolesZh : roles)[rIdx];
             const typeElem = document.getElementById('typewriter');
-            if(typeElem) {
-                typeElem.innerText = del ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
-                if(!del && charIdx > current.length) { setTimeout(()=>del=true, 2500); }
-                else if(del && charIdx < 0) { del=false; rIdx = (rIdx+1)%roles.length; }
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                typeElem.textContent = current;
+                return;
             }
-            setTimeout(type, del ? 40 : 80);
+            charIdx += del ? -1 : 1;
+            typeElem.textContent = current.slice(0, charIdx);
+            let delay = del ? 40 : 80;
+            if (charIdx >= current.length && !del) { del = true; delay = 2500; }
+            else if (charIdx <= 0 && del) { del = false; rIdx = (rIdx + 1) % roles.length; }
+            typeTimer = setTimeout(type, delay);
+        }
+        function resetTypewriter() {
+            clearTimeout(typeTimer); charIdx = 0; del = false; type();
         }
 
         const projects = {
@@ -1524,7 +1539,7 @@
         tag: "AI / GENERATIVE MUSIC / WEB & MOBILE",
         time: "Dec 2025 - Mar 2026",
         role: "Lead UI/UX Designer & Front-end Developer",
-        img: "webpage.png",
+        img: "assets/songdiocover.webp",
         summary: "A multimodal AI music experience presented through responsive product storytelling across mockups, mobile interfaces, promotional visuals, and a dedicated web showcase.",
         content: `
             <p>Songdio is a multimodal AI music platform designed to make music generation feel more expressive, visually bold, and easier to explore across devices. This detail page is framed as an implementation-focused case study, bringing together product mockups, mobile interface screens, promotional visuals, and the web-side experience in one continuous narrative.</p>
@@ -1535,32 +1550,32 @@
             { label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=2-6033&t=9BM7jsZokye2NkEB-1" }
         ],
         mockups: [
-            { src: "mockup-1.png", alt: "Songdio mockup one", className: "full" },
-            { src: "mockup-2.jpg", alt: "Songdio mockup two", className: "tall" },
-            { src: "mockup-3.png", alt: "Songdio mockup three", className: "wide" }
+            { src: "assets/mockup-1.webp", alt: "Songdio mockup one", className: "full" },
+            { src: "assets/mockup-2.webp", alt: "Songdio mockup two", className: "tall" },
+            { src: "assets/mockup-3.webp", alt: "Songdio mockup three", className: "wide" }
         ],
         gallerySections: [
             {
                 title: "Mobile Screens",
                 layoutClass: "mobile-portfolio",
                 items: [
-                    { src: "mobile-1.png", alt: "Songdio mobile screen one", className: "mobile" },
-                    { src: "mobile-2.png", alt: "Songdio mobile screen two", className: "mobile" },
-                    { src: "mobile-3.png", alt: "Songdio mobile screen three", className: "mobile" },
-                    { src: "mobile-4.png", alt: "Songdio mobile screen four", className: "mobile" }
+                    { src: "assets/mobile-1.webp", alt: "Songdio mobile screen one", className: "mobile" },
+                    { src: "assets/mobile-2.webp", alt: "Songdio mobile screen two", className: "mobile" },
+                    { src: "assets/mobile-3.webp", alt: "Songdio mobile screen three", className: "mobile" },
+                    { src: "assets/mobile-4.webp", alt: "Songdio mobile screen four", className: "mobile" }
                 ]
             },
             {
                 title: "Promo Visuals",
                 items: [
-                    { src: "poster-1.png", alt: "Songdio promo visual one", className: "poster" },
-                    { src: "poster-2.png", alt: "Songdio promo visual two", className: "poster" }
+                    { src: "assets/poster-1.webp", alt: "Songdio promo visual one", className: "poster" },
+                    { src: "assets/poster-2.webp", alt: "Songdio promo visual two", className: "poster" }
                 ]
             },
             {
-                title: "Web Experience",
+                title: "Project Cover",
                 items: [
-                    { src: "webpage.png", alt: "Songdio webpage showcase", className: "full" }
+                    { src: "assets/songdiocover.webp", alt: "Songdio project cover", className: "full" }
                 ]
             }
         ]
@@ -1571,28 +1586,28 @@
         tag: "AI / WELLNESS / MOBILE",
         time: "Jan 2026 - Present",
         role: "AI Product Designer",
-        img: "Free iPhone 17 Pro.png",
+        img: "assets/free-iphone-17-pro.webp",
         summary: "An AI-driven companion-style wellness concept with an emotionally guided interaction tone.",
         content: `<p>Coomo is an AI-driven sound environment app designed around gentle interaction, emotional companionship, and restorative daily rituals.</p><p style="margin-top: 18px;">This is a companion-style interactive software that emphasizes emotional healing. It focuses on using a mix of various music and audio formats to provide users with a psychologically supportive and therapeutic experience. The product is currently in the testing phase. During the product design process, I also worked as a front-end developer, primarily using the Swift language in Xcode.</p>`,
         links: [
             { label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=2-4645&t=9BM7jsZokye2NkEB-1" }
         ],
         mockups: [
-            { src: "Free iPhone 17 Pro.png", alt: "Coomo iPhone 17 Pro mockup", className: "coomo-top" },
-            { src: "iPhone 15 Pro (2).png", alt: "Coomo iPhone 15 Pro mockup", className: "coomo-bottom" },
-            { src: "Free iPhone Air.png", alt: "Coomo iPhone Air mockup", className: "coomo-side" }
+            { src: "assets/free-iphone-17-pro.webp", alt: "Coomo iPhone 17 Pro mockup", className: "coomo-top" },
+            { src: "assets/iphone-15-pro-2.webp", alt: "Coomo iPhone 15 Pro mockup", className: "coomo-bottom" },
+            { src: "assets/free-iphone-air.webp", alt: "Coomo iPhone Air mockup", className: "coomo-side" }
         ],
         gallerySections: [
             {
                 title: "Mobile Screens",
                 layoutClass: "coomo-mobile-portfolio",
                 items: [
-                    { src: "Home Page (1).png", alt: "Coomo home page", className: "mobile coomo-home" },
-                    { src: "White_Noise Info.png", alt: "Coomo white noise info", className: "mobile coomo-uniform" },
-                    { src: "White_Noise Play Page (1).png", alt: "Coomo white noise play page", className: "mobile coomo-uniform" },
-                    { src: "Agile Play Page.png", alt: "Coomo agile play page", className: "mobile coomo-uniform" },
-                    { src: "Agile Info.png", alt: "Coomo agile info", className: "mobile coomo-uniform" },
-                    { src: "Inner_Word.png", alt: "Coomo inner word page", className: "mobile coomo-uniform" }
+                    { src: "assets/home-page-1.webp", alt: "Coomo home page", className: "mobile coomo-home" },
+                    { src: "assets/white-noise-info.webp", alt: "Coomo white noise info", className: "mobile coomo-uniform" },
+                    { src: "assets/white-noise-play-page-1.webp", alt: "Coomo white noise play page", className: "mobile coomo-uniform" },
+                    { src: "assets/agile-play-page.webp", alt: "Coomo agile play page", className: "mobile coomo-uniform" },
+                    { src: "assets/agile-info.webp", alt: "Coomo agile info", className: "mobile coomo-uniform" },
+                    { src: "assets/inner-word.webp", alt: "Coomo inner word page", className: "mobile coomo-uniform" }
                 ]
             }
         ]
@@ -1603,25 +1618,25 @@
         tag: "AI HEALTH / COMPANION / WEARABLE",
         time: "University Project",
         role: "Interaction Designer & Product Designer",
-        img: "Sonair Top.png",
+        img: "assets/sonair-top.webp",
         summary: "A future-oriented AI health companion that combines wearable sensing and emotionally intelligent support for users who care about lung health.",
         content: `<p>LungGuard Pro is a future-oriented AI health companion designed for young smokers and users who care about lung health, focusing on the neglected daily life behavior of coughing. Through a wearable cough sensing necklace and an emotionally intelligent mobile app, LungGuard enables users to monitor daily coughing patterns and gain real-time insights, while the intelligent AI companion assistant will provide real emotional support to ensure that users receive personalized support to quit smoking and restore lung health.</p>`,
         links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-3045&t=Ng3uklA5AtyuPTM6-1" }],
         mockups: [
-            { src: "Sonair Top.png", alt: "Sonair top visual", className: "full" }
+            { src: "assets/sonair-top.webp", alt: "Sonair top visual", className: "full" }
         ],
         gallerySections: [
             {
                 title: "Interface Showcase",
                 layoutClass: "sonair-showcase",
                 items: [
-                    { src: "MockUp.png", alt: "Sonair main mockup", className: "sonair-main" },
-                    { src: "Sonair1.png", alt: "Sonair interface one", className: "sonair-mini" },
-                    { src: "Sonair2.png", alt: "Sonair interface two", className: "sonair-mini" },
-                    { src: "Sonair3.png", alt: "Sonair interface three", className: "sonair-mini" },
-                    { src: "Sonair4.png", alt: "Sonair interface four", className: "sonair-mini" },
-                    { src: "Sonair5.png", alt: "Sonair interface five", className: "sonair-mini" },
-                    { src: "Sonair6.png", alt: "Sonair interface six", className: "sonair-mini" }
+                    { src: "assets/mockup.webp", alt: "Sonair main mockup", className: "sonair-main" },
+                    { src: "assets/sonair1.webp", alt: "Sonair interface one", className: "sonair-mini" },
+                    { src: "assets/sonair2.webp", alt: "Sonair interface two", className: "sonair-mini" },
+                    { src: "assets/sonair3.webp", alt: "Sonair interface three", className: "sonair-mini" },
+                    { src: "assets/sonair4.webp", alt: "Sonair interface four", className: "sonair-mini" },
+                    { src: "assets/sonair5.webp", alt: "Sonair interface five", className: "sonair-mini" },
+                    { src: "assets/sonair6.webp", alt: "Sonair interface six", className: "sonair-mini" }
                 ]
             }
         ],
@@ -1633,24 +1648,24 @@
         tag: "VR / FAMILY TRAVEL / EXPERIENCE DESIGN",
         time: "University Project",
         role: "Interaction Designer & Experience Designer",
-        img: "SKYTop.png",
+        img: "assets/vr1.webp",
         summary: "A VR-based preparation system that helps families rehearse air travel with children before departure.",
         content: `<p>SkyDreamer is a VR-based flight preparation system designed for parents traveling with children. It combines flight planning, child setup, and immersive simulation to help families rehearse key stages of the journey before departure, such as the airport and in-flight experience.</p><p style="margin-top: 18px;">The project aims to reduce travel anxiety, improve parents’ sense of control, and help children become more familiar with unfamiliar travel environments. By turning preparation into an interactive VR experience, SkyDreamer explores how immersive technology can support smoother and more family-centered air travel.</p>`,
         links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-3534&t=Ng3uklA5AtyuPTM6-1" }],
         mockups: [
-            { src: "SKYTop.png", alt: "SkyDreamer top visual", className: "full" }
+            { src: "assets/vr1.webp", alt: "SkyDreamer VR overview", className: "full" }
         ],
         gallerySections: [
             {
                 title: "VR Screens",
                 layoutClass: "skydreamer-vr",
                 items: [
-                    { src: "VR1.png", alt: "SkyDreamer VR screen one", className: "mobile" },
-                    { src: "VR2.png", alt: "SkyDreamer VR screen two", className: "mobile" },
-                    { src: "VR3.png", alt: "SkyDreamer VR screen three", className: "mobile" },
-                    { src: "VR4.png", alt: "SkyDreamer VR screen four", className: "mobile" },
-                    { src: "VR5.png", alt: "SkyDreamer VR screen five", className: "mobile" },
-                    { src: "VR6.png", alt: "SkyDreamer VR screen six", className: "mobile" }
+                    { src: "assets/vr1.webp", alt: "SkyDreamer VR screen one", className: "mobile" },
+                    { src: "assets/vr2.webp", alt: "SkyDreamer VR screen two", className: "mobile" },
+                    { src: "assets/vr3.webp", alt: "SkyDreamer VR screen three", className: "mobile" },
+                    { src: "assets/vr4.webp", alt: "SkyDreamer VR screen four", className: "mobile" },
+                    { src: "assets/vr5.webp", alt: "SkyDreamer VR screen five", className: "mobile" },
+                    { src: "assets/vr6.webp", alt: "SkyDreamer VR screen six", className: "mobile" }
                 ]
             }
         ],
@@ -1662,28 +1677,28 @@
         tag: "HEALTH TECH / PRODUCT / UX",
         time: "University Project",
         role: "Interaction Designer & Product Designer",
-        img: "PeriodGuardTop.png",
+        img: "assets/periodguardtop.webp",
         summary: "An integrated oral healthcare solution designed to support early detection, preventive care, and everyday gum-health awareness for students.",
         content: `<p>PerioGuard is an integrated oral healthcare solution designed to help students detect early signs of periodontal disease and improve preventive care in daily life. The project combines a smart physical prototype with a digital mobile platform, enabling users to monitor oral conditions, receive brushing support, access health reports, and develop greater awareness of gum health.</p><p style="margin-top: 18px;">Informed by qualitative and quantitative user research, the design responds to the need for convenient, affordable, and user-friendly periodontal care tools. By incorporating AI-assisted analysis, data tracking, and health education, PerioGuard aims to promote early intervention and reduce the risk of periodontal disease among young people.</p>`,
         links: [{ label: "Figma", url: "https://www.figma.com/design/puFg9d29OrphMtE4020AuH/James-Portfolio?node-id=3-1022&t=Ng3uklA5AtyuPTM6-1" }],
         mockups: [
-            { src: "PeriodGuardTop.png", alt: "PeriodGuard top concept visual", className: "full" }
+            { src: "assets/periodguardtop.webp", alt: "PeriodGuard top concept visual", className: "full" }
         ],
         gallerySections: [
             {
                 title: "Mobile Screens",
                 layoutClass: "mobile-portfolio",
                 items: [
-                    { src: "PG1.png", alt: "PeriodGuard mobile screen one", className: "mobile" },
-                    { src: "PG2.png", alt: "PeriodGuard mobile screen two", className: "mobile" },
-                    { src: "PG3.png", alt: "PeriodGuard mobile screen three", className: "mobile" },
-                    { src: "PG4.png", alt: "PeriodGuard mobile screen four", className: "mobile" }
+                    { src: "assets/pg1.webp", alt: "PeriodGuard mobile screen one", className: "mobile" },
+                    { src: "assets/pg2.webp", alt: "PeriodGuard mobile screen two", className: "mobile" },
+                    { src: "assets/pg3.webp", alt: "PeriodGuard mobile screen three", className: "mobile" },
+                    { src: "assets/pg4.webp", alt: "PeriodGuard mobile screen four", className: "mobile" }
                 ]
             },
             {
                 title: "Product Floor Plan",
                 items: [
-                    { src: "Product Floor plan.png", alt: "PeriodGuard product floor plan", className: "full" }
+                    { src: "assets/product-floor-plan.webp", alt: "PeriodGuard product floor plan", className: "full" }
                 ]
             }
         ],
@@ -1716,7 +1731,7 @@ if (navLogo) {
         <div class="mockup-grid">
             ${mockups.map(item => `
                 <div class="mockup-frame ${item.className || 'full'}">
-                    <img src="${item.src}" alt="${item.alt || 'Project mockup'}">
+                    <img loading="lazy" decoding="async" src="${item.src}" alt="${item.alt || 'Project mockup'}">
                 </div>
             `).join('')}
         </div>
@@ -1738,7 +1753,7 @@ function renderGallerySections(sections = []) {
                 <div class="gallery-group-title">${section.title}</div>
                 <div class="gallery-grid ${section.layoutClass || ''}">
                     ${(section.items || []).map(item => item.src
-                        ? `<div class="gallery-tile ${item.className || 'web'}"><img src="${item.src}" alt="${item.alt || section.title}"></div>`
+                        ? `<div class="gallery-tile ${item.className || 'web'}"><img loading="lazy" decoding="async" src="${item.src}" alt="${item.alt || section.title}"></div>`
                         : `<div class="placeholder-tile ${item.className || 'web'}">${item.placeholder || 'Image placeholder'}</div>`
                     ).join('')}
                 </div>
@@ -1778,41 +1793,15 @@ function renderGallerySections(sections = []) {
     gallerySections.nextProject = p.nextProject;
     renderGallerySections(gallerySections);
 
-    const modal = document.getElementById('project-modal');
-    modal.style.display = 'block';
-    setTimeout(() => modal.classList.add('active'), 10);
-    document.body.style.overflow = 'hidden';
+    translatePage(document.getElementById('project-modal'));
+    showDialog('project-modal');
 }
-
-        function closeModal() {
-            const modal = document.getElementById('project-modal');
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 400);
-        }
-
-        function openResumeModal() {
-            const modal = document.getElementById('resume-modal');
-            if(!modal) return;
-            modal.style.display = 'block';
-            setTimeout(() => modal.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeResumeModal() {
-            const modal = document.getElementById('resume-modal');
-            if(!modal) return;
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 400);
-        }
+        function closeModal() { hideDialog('project-modal'); }
+        function openResumeModal() { showDialog('resume-modal'); }
+        function closeResumeModal() { hideDialog('resume-modal'); }
 
         window.addEventListener('resize', init);
-        init(); render(); type(); animateCursor();
+        init(); render(); applyLanguage(); type(); animateCursor();
 
 const uniGrid = document.querySelector('.uni-grid');
     const uniCards = document.querySelectorAll('.uni-card');
@@ -1844,37 +1833,43 @@ const uniGrid = document.querySelector('.uni-grid');
             card.style.opacity = Math.max(0.4, (opacity + 1.2) / 2.2); // 调整这里
             
             // 防止误触：只有最前面的卡片可以点击
-            card.style.pointerEvents = (normalizedTheta < 45 || normalizedTheta > 315) ? 'auto' : 'none';
+            const active = normalizedTheta < 45 || normalizedTheta > 315;
+            card.style.pointerEvents = active ? 'auto' : 'none';
+            card.tabIndex = active ? 0 : -1;
+            card.setAttribute('aria-hidden', String(!active));
         });
     }
 
-    // 鼠标/触摸事件 (仅在 uni-grid 区域内监听)
-    uniGrid.addEventListener('mousedown', (e) => {
-        isDraggingUni = true;
-        startXUni = e.clientX;
-        uniGrid.style.transition = 'none'; // 拖拽时取消动画
+    const carouselShell = document.querySelector('.uni-carousel-shell');
+    let draggedUni = false;
+    carouselShell.addEventListener('pointerdown', e => {
+        if (e.target.closest('button') || e.button !== 0) return;
+        isDraggingUni = true; draggedUni = false; startXUni = e.clientX;
+        uniGrid.style.transition = 'none';
     });
-
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('pointermove', e => {
         if (!isDraggingUni) return;
         const dx = e.clientX - startXUni;
-        // 改进：将旋转系数从 0.2 降至 0.1，减慢旋转速度，更合理不 jump
-        currentRotationY = lastRotationY + dx * 0.1; 
-        requestAnimationFrame(update3DCarousel);
+        if (Math.abs(dx) > 8) draggedUni = true;
+        currentRotationY = lastRotationY + dx * .35;
+        update3DCarousel();
     });
-
-    window.addEventListener('mouseup', () => {
+    function finishCarouselDrag() {
         if (!isDraggingUni) return;
         isDraggingUni = false;
-        lastRotationY = currentRotationY;
-        uniGrid.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-        
-        // 改进：松手后自动对齐到最近的一张卡片
         const snapAngle = 360 / totalCards;
         currentRotationY = Math.round(currentRotationY / snapAngle) * snapAngle;
         lastRotationY = currentRotationY;
+        uniGrid.style.transition = 'transform .6s cubic-bezier(.23, 1, .32, 1)';
         update3DCarousel();
-    });
+    }
+    window.addEventListener('pointerup', finishCarouselDrag);
+    window.addEventListener('pointercancel', finishCarouselDrag);
+    carouselShell.addEventListener('click', e => {
+        if (draggedUni && e.target.closest('.uni-card')) {
+            e.preventDefault(); e.stopPropagation(); draggedUni = false;
+        }
+    }, true);
 
     function rotateUniCarousel(direction) {
         const snapAngle = 360 / totalCards;
@@ -1888,5 +1883,6 @@ const uniGrid = document.querySelector('.uni-grid');
     init3D();
     update3DCarousel();
     </script>
+<script src="interactions.js"></script>
 </body>
 </html>
