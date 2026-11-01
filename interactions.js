@@ -62,3 +62,30 @@ document.addEventListener('error', event => {
     event.target.replaceWith(fallback);
     translatePage(fallback.parentElement || document.body);
 }, true);
+
+// Progressive enhancement: content stays visible if observers are unsupported.
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+const revealAnimations = new Set();
+if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            revealObserver.unobserve(entry.target);
+            if (motionPreference.matches) return;
+            const animation = entry.target.animate([
+                { opacity: .35, translate: '0 20px' },
+                { opacity: 1, translate: '0 0' }
+            ], { duration: 550, easing: 'cubic-bezier(.2,.7,.3,1)' });
+            revealAnimations.add(animation);
+            animation.finished.then(() => revealAnimations.delete(animation)).catch(() => {});
+        });
+    }, { threshold: .08 });
+    document.querySelectorAll('.section-title, .timeline-item, .project-card, .uni-card, .contact-box').forEach(el => revealObserver.observe(el));
+}
+motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) {
+        revealAnimations.forEach(animation => animation.cancel());
+        revealAnimations.clear();
+    }
+    resetTypewriter();
+});
