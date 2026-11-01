@@ -160,3 +160,35 @@ nav { padding: 24px max(24px, calc((100vw - 1152px) / 2)); border-bottom: 1px so
  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
  #canvas3d { display: none; }
 }
+/* Full-width canvas: section widths follow the viewport, not a centered column. */
+:root { --page-gutter: clamp(20px, 3vw, 56px); }
+.container { width: 100%; max-width: none; padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+nav { padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+.hero { padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+.hero-content { width: 100%; max-width: none; }
+.hero-content h1 { font-size: clamp(3.5rem, 12vw, 14rem); }
+.hero-bottom { left: var(--page-gutter); right: var(--page-gutter); }
+#canvas3d { transform: none; mask-image: none; }
+#work { padding-left: 0; padding-right: 0; }
+#work > .section-eyebrow, #work > .section-title, #work > h3 { margin-left: var(--page-gutter); margin-right: var(--page-gutter); }
+.work-grid { gap: 2px; }
+.project-card, .project-bg, .project-info { border-radius: 0; }
+.project-card { height: clamp(440px, 39vw, 760px); }
+.project-info { padding: clamp(28px, 4vw, 72px); }
+#university { padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+.uni-cover { height: auto; aspect-ratio: 16 / 10; }
+#contact { padding-left: 0; padding-right: 0; }
+.contact-box { border-radius: 0; border-left: 0; border-right: 0; }
+.modal-body.container { max-width: none; }
+@media (min-width: 1101px) {
+ #about .about-grid { grid-template-columns: minmax(280px, .7fr) minmax(0, 1.6fr); gap: clamp(40px, 6vw, 120px); }
+}
+@media (max-width: 768px) {
+ :root { --page-gutter: 20px; }
+ .hero-content h1 { font-size: clamp(2.6rem, 12.5vw, 6rem); }
+ .project-card { height: auto; min-height: 410px; }
+ .project-info { min-height: 410px; padding: 28px var(--page-gutter); }
+ .work-grid { gap: 16px; }
+ #university { padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+}
+@media (max-width: 360px) { :root { --page-gutter: 16px; } }
